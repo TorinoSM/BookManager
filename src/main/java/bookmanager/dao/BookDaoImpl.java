@@ -1,6 +1,6 @@
-package dao;
+package bookmanager.dao;
 
-import model.Book;
+import bookmanager.model.Book;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,7 +38,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public void removeBook(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Book book = (Book) session.load(Book.class, new Integer(id));
+        Book book = (Book) session.load(Book.class, id);
         if (book != null) {
             session.delete(book);
         }
@@ -48,7 +48,7 @@ public class BookDaoImpl implements BookDao {
     @Override
     public Book getBookById(int id) {
         Session session = sessionFactory.getCurrentSession();
-        Book book = (Book) session.load(Book.class, new Integer(id));
+        Book book = (Book) session.load(Book.class, id);
         log.info("Book successfully loaded: " + book);
         return book;
     }
